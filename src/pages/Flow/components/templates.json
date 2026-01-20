@@ -1,0 +1,221 @@
+[
+    {
+        "id": "cold-connection-3",
+        "name": "Cold Connection Request",
+        "description": "Simple connection request with a follow-up message after 3 days",
+        "category": "cold-outreach",
+        "sequence": {
+            "edges": [
+                {
+                    "id": "e-root-action_wjifwx1f",
+                    "source": "root",
+                    "target": "action_wjifwx1f"
+                },
+                {
+                    "id": "e-action_wjifwx1f-delay_9yx48dlw",
+                    "data": {
+                        "outcome": "positive"
+                    },
+                    "label": "Connected",
+                    "source": "action_wjifwx1f",
+                    "target": "delay_9yx48dlw"
+                },
+                {
+                    "id": "e-delay_9yx48dlw-action_zh1ukpvx",
+                    "source": "delay_9yx48dlw",
+                    "target": "action_zh1ukpvx"
+                },
+                {
+                    "id": "e-action_zh1ukpvx-end_gomj406a",
+                    "data": {
+                        "outcome": "positive"
+                    },
+                    "label": "Replied",
+                    "source": "action_zh1ukpvx",
+                    "target": "end_gomj406a"
+                },
+                {
+                    "id": "e-action_zh1ukpvx-delay_gftrvzzu",
+                    "source": "action_zh1ukpvx",
+                    "target": "delay_gftrvzzu"
+                },
+                {
+                    "id": "e-delay_gftrvzzu-end_jfk09m5t",
+                    "data": {
+                        "outcome": "negative"
+                    },
+                    "label": "Not Replied",
+                    "source": "delay_gftrvzzu",
+                    "target": "end_jfk09m5t"
+                },
+                {
+                    "id": "e-action_wjifwx1f-delay_jxiybhgl",
+                    "source": "action_wjifwx1f",
+                    "target": "delay_jxiybhgl"
+                },
+                {
+                    "id": "e-delay_jxiybhgl-end_ijrp011t",
+                    "data": {
+                        "outcome": "negative"
+                    },
+                    "label": "Not Connected",
+                    "source": "delay_jxiybhgl",
+                    "target": "end_ijrp011t"
+                }
+            ],
+            "nodes": [
+                {
+                    "id": "root",
+                    "data": {
+                        "label": "Start Campaign"
+                    },
+                    "type": "start",
+                    "dragging": false,
+                    "measured": {
+                        "width": 183,
+                        "height": 48
+                    },
+                    "position": {
+                        "x": -91.5,
+                        "y": 0
+                    },
+                    "draggable": false
+                },
+                {
+                    "id": "action_wjifwx1f",
+                    "data": {
+                        "type": "multiple",
+                        "actionType": "SEND_CONNECTION_REQUEST"
+                    },
+                    "type": "action",
+                    "dragging": false,
+                    "measured": {
+                        "width": 281,
+                        "height": 54
+                    },
+                    "position": {
+                        "x": -140.5,
+                        "y": 98
+                    },
+                    "draggable": false
+                },
+                {
+                    "id": "delay_9yx48dlw",
+                    "data": {
+                        "delay": 180
+                    },
+                    "type": "delay",
+                    "dragging": false,
+                    "measured": {
+                        "width": 120,
+                        "height": 38
+                    },
+                    "position": {
+                        "x": -290,
+                        "y": 302
+                    },
+                    "draggable": false
+                },
+                {
+                    "id": "action_zh1ukpvx",
+                    "data": {
+                        "type": "multiple",
+                        "message": "Hey {linkedin_firstName}",
+                        "actionType": "SEND_MESSAGE"
+                    },
+                    "type": "action",
+                    "dragging": false,
+                    "measured": {
+                        "width": 207,
+                        "height": 54
+                    },
+                    "position": {
+                        "x": -333.5,
+                        "y": 390
+                    },
+                    "draggable": false
+                },
+                {
+                    "id": "end_gomj406a",
+                    "data": {},
+                    "type": "end",
+                    "dragging": false,
+                    "measured": {
+                        "width": 170,
+                        "height": 42
+                    },
+                    "position": {
+                        "x": -430,
+                        "y": 594
+                    },
+                    "draggable": false
+                },
+                {
+                    "id": "delay_gftrvzzu",
+                    "data": {
+                        "delay": 180
+                    },
+                    "type": "delay",
+                    "dragging": false,
+                    "measured": {
+                        "width": 120,
+                        "height": 38
+                    },
+                    "position": {
+                        "x": -175,
+                        "y": 529
+                    },
+                    "draggable": false
+                },
+                {
+                    "id": "end_jfk09m5t",
+                    "data": {},
+                    "type": "add-end",
+                    "dragging": false,
+                    "measured": {
+                        "width": 170,
+                        "height": 42
+                    },
+                    "position": {
+                        "x": -200,
+                        "y": 667
+                    },
+                    "draggable": false
+                },
+                {
+                    "id": "delay_jxiybhgl",
+                    "data": {
+                        "delay": 180
+                    },
+                    "type": "delay",
+                    "dragging": false,
+                    "measured": {
+                        "width": 120,
+                        "height": 38
+                    },
+                    "position": {
+                        "x": 170,
+                        "y": 237
+                    },
+                    "draggable": false
+                },
+                {
+                    "id": "end_ijrp011t",
+                    "data": {},
+                    "type": "add-end",
+                    "dragging": false,
+                    "measured": {
+                        "width": 170,
+                        "height": 42
+                    },
+                    "position": {
+                        "x": 145,
+                        "y": 375
+                    },
+                    "draggable": false
+                }
+            ]
+        },
+        "icon": "connection"
+    }
+]

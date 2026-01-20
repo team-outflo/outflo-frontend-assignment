@@ -1,0 +1,357 @@
+{
+  "sequence": {
+    "initial": {
+      "actionsAllowed": [
+        "CHECK_OPEN_PROFILE",
+        "CHECK_CONNECTION",
+        "SEND_CONNECTION_REQUEST",
+        "SEND_MESSAGE",
+        "SEND_INMAIL",
+        "FOLLOW_PROFILE",
+        "ENDORSE_SKILLS",
+        "LIKE_A_POST",
+        "VIEW_PROFILE"
+      ]
+    },
+    "CHECK_OPEN_PROFILE": {
+      "type": "conditional",
+      "label": "If Open Profile",
+      "icon": "Lock",
+      "conditions": [
+        {
+          "type": "positive",
+          "label": "Yes",
+          "rule": {
+            "type": "GROUP",
+            "op": "AND",
+            "children": [
+              {
+                "type": "RULE",
+                "field": "isProfileOpenedStatus",
+                "cmp": "EQUAL",
+                "value": "OPENED"
+              }
+            ]
+          },
+          "actionsAllowed": [
+            "CHECK_CONNECTION",
+            "SEND_CONNECTION_REQUEST",
+            "SEND_MESSAGE",
+            "SEND_INMAIL",
+            "ENDORSE_SKILLS",
+            "FOLLOW_PROFILE",
+            "LIKE_A_POST",
+            "VIEW_PROFILE"
+          ]
+        },
+        {
+          "type": "negative",
+          "label": "No",
+          "rule": {
+            "type": "GROUP",
+            "op": "AND",
+            "children": [
+              {
+                "type": "RULE",
+                "field": "isProfileOpenedStatus",
+                "cmp": "EQUAL",
+                "value": "NOT_OPENED"
+              }
+            ]
+          },
+          "icon": "NOT_OPENED_PROFILE",
+          "actionsAllowed": [
+            "CHECK_CONNECTION",
+            "SEND_CONNECTION_REQUEST",
+            "SEND_MESSAGE",
+            "SEND_INMAIL",
+            "ENDORSE_SKILLS",
+            "FOLLOW_PROFILE",
+            "LIKE_A_POST",
+            "VIEW_PROFILE"
+          ]
+        }
+      ]
+    },
+    "CHECK_CONNECTION": {
+      "type": "conditional",
+      "label": "If Connection",
+      "icon": "GitBranch",
+      "conditions": [
+        {
+          "label": "Yes",
+          "type": "positive",
+          "rule": {
+            "type": "GROUP",
+            "op": "AND",
+            "children": [
+              {
+                "type": "RULE",
+                "field": "isConnectedStatus",
+                "cmp": "EQUAL",
+                "value": "CONNECTED"
+              }
+            ]
+          },
+          "actionsAllowed": [
+            "SEND_MESSAGE",
+            "ENDORSE_SKILLS",
+            "VIEW_PROFILE",
+            "CHECK_OPEN_PROFILE",
+            "LIKE_A_POST"
+          ]
+        },
+        {
+          "label": "No",
+          "type": "negative",
+          "rule": {
+            "type": "GROUP",
+            "op": "AND",
+            "children": [
+              {
+                "type": "RULE",
+                "field": "isConnectedStatus",
+                "cmp": "EQUAL",
+                "value": "NOT_CONNECTED"
+              }
+            ]
+          },
+          "actionsAllowed": [
+            "SEND_CONNECTION_REQUEST",
+            "VIEW_PROFILE",
+            "CHECK_OPEN_PROFILE",
+            "SEND_CONNECTION_REQUEST",
+            "SEND_INMAIL",
+            "LIKE_A_POST"
+          ]
+        }
+      ]
+    },
+    "SEND_CONNECTION_REQUEST": {
+      "type": "action",
+      "outcomeType": "multiple",
+      "label": "Send Connection Request",
+      "icon": "UserPlus",
+      "outcomes": [
+        {
+          "type": "positive",
+          "rule": {
+            "type": "GROUP",
+            "op": "AND",
+            "children": [
+              {
+                "type": "RULE",
+                "field": "connectionStatus",
+                "cmp": "EQUAL",
+                "value": "ACCEPTED"
+              },
+              {
+                "type": "WAIT",
+                "value": "WAIT",
+                "metadata": {
+                  "wait": 10
+                }
+              }
+            ]
+          },
+          "label": "Connected",
+          "actionsAllowed": [
+            "VIEW_PROFILE",
+            "CHECK_OPEN_PROFILE",
+            "SEND_MESSAGE",
+            "ENDORSE_SKILLS",
+            "LIKE_A_POST"
+          ]
+        },
+        {
+          "type": "negative",
+          "rule": {
+            "type": "GROUP",
+            "op": "AND",
+            "children": [
+              {
+                "type": "WAIT",
+                "value": "WAIT",
+                "metadata": {
+                  "wait": 10
+                }
+              },
+              {
+                "type": "RULE",
+                "field": "connectionStatus",
+                "cmp": "EQUAL",
+                "value": "NOT_ACCEPTED"
+              }
+            ]
+          },
+          "label": "Not Connected",
+          "actionsAllowed": [
+            "VIEW_PROFILE",
+            "CHECK_OPEN_PROFILE",
+            "SEND_INMAIL",
+            "LIKE_A_POST"
+          ]
+        }
+      ]
+    },
+    "SEND_MESSAGE": {
+      "label": "Send Message",
+      "icon": "MessageSquare",
+      "type": "action",
+      "outcomeType": "multiple",
+      "outcomes": [
+        {
+          "type": "positive",
+          "label": "Replied",
+          "rule": {
+            "type": "GROUP",
+            "op": "AND",
+            "children": [
+              {
+                "type": "RULE",
+                "field": "messageRepliedStatus",
+                "cmp": "EQUAL",
+                "value": "REPLIED"
+              },
+              {
+                "type": "WAIT",
+                "value": "WAIT",
+                "metadata": {
+                  "wait": 10
+                }
+              }
+            ]
+          },
+          "actionsAllowed": []
+        },
+        {
+          "type": "negative",
+          "label": "Not Replied",
+          "rule": {
+            "type": "GROUP",
+            "op": "AND",
+            "children": [
+              {
+                "type": "WAIT",
+                "value": "WAIT",
+                "metadata": {
+                  "wait": 10
+                }
+              },
+              {
+                "type": "RULE",
+                "field": "messageRepliedStatus",
+                "cmp": "EQUAL",
+                "value": "NOT_REPLIED"
+              }
+            ]
+          },
+          "actionsAllowed": [
+            "VIEW_PROFILE",
+            "CHECK_OPEN_PROFILE",
+            "ENDORSE_SKILLS",
+            "LIKE_A_POST",
+            "SEND_MESSAGE"
+          ]
+        }
+      ]
+    },
+    "SEND_INMAIL": {
+      "label": "Send InMail",
+      "icon": "Inbox",
+      "type": "action",
+      "outcomeType": "multiple",
+      "outcomes": [
+        {
+          "label": "Replied",
+          "type": "positive",
+          "actionsAllowed": [],
+          "rule": {
+            "type": "GROUP",
+            "op": "AND",
+            "children": [
+              {
+                "type": "RULE",
+                "field": "inMailRepliedStatus",
+                "cmp": "EQUAL",
+                "value": "REPLIED"
+              },
+              {
+                "type": "WAIT",
+                "value": "WAIT",
+                "metadata": {
+                  "wait": 10
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "negative",
+          "label": "Not Replied",
+          "rule": {
+            "type": "GROUP",
+            "op": "AND",
+            "children": [
+              {
+                "type": "WAIT",
+                "value": "WAIT",
+                "metadata": {
+                  "wait": 10
+                }
+              },
+              {
+                "type": "RULE",
+                "field": "inMailRepliedStatus",
+                "cmp": "EQUAL",
+                "value": "NOT_REPLIED"
+              }
+            ]
+          },
+          "actionsAllowed": [
+            "VIEW_PROFILE",
+            "CHECK_OPEN_PROFILE",
+            "SEND_INMAIL",
+            "LIKE_A_POST"
+          ]
+        }
+      ]
+    },
+    "FOLLOW_PROFILE": {
+      "label": "Follow Profile",
+      "icon": "UserPlus",
+      "type": "action",
+      "outcomeType": "single",
+      "actionsAllowed": [
+        "SEND_CONNECTION_REQUEST",
+        "CHECK_CONNECTION",
+        "CHECK_OPEN_PROFILE",
+        "SEND_MESSAGE",
+        "SEND_INMAIL",
+        "VIEW_PROFILE",
+        "LIKE_A_POST"
+      ]
+    },
+    "LIKE_A_POST": {
+      "type": "action",
+      "outcomeType": "single",
+      "changesActionsAllowed": false,
+      "label": "Like a Post",
+      "icon": "ThumbsUp"
+    },
+    "ENDORSE_SKILLS": {
+      "label": "Endorse Skills",
+      "icon": "Award",
+      "type": "action",
+      "outcomeType": "single",
+      "changesActionsAllowed": false
+    },
+    "VIEW_PROFILE": {
+      "label": "View Profile",
+      "icon": "Eye",
+      "type": "action",
+      "outcomeType": "single",
+      "changesActionsAllowed": false
+    }
+  }
+}
