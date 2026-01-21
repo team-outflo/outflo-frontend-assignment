@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider, useIsFetching } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useNavigationType, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigationType, useLocation, Navigate } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignUpPage";
@@ -31,6 +31,9 @@ const App = () => {
           {/* Auth routes - no layout, public access */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+
+          {/* Root redirect to campaigns */}
+          <Route path="/" element={<Navigate to="/allcampaigns" replace />} />
 
           {/* Protected routes - wrapped with Root component for auth check */}
           <Route element={<Root />}>            

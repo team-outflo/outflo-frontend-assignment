@@ -51,8 +51,10 @@ const LoginForm = () => {
       { domain: normalizedDomain, username: normalizedEmail, password: normalizedPassword },
       {
         onSuccess: (res) => {
-          // Extract destinationUrl and popup from response
-          const destinationUrl = res.destinationUrl || POST_LOGIN_ROUTES.INBOX;
+          // Force destination to /allcampaigns as /inbox and other areas are removed
+          const destinationUrl = (res.destinationUrl && res.destinationUrl !== '/inbox') 
+            ? res.destinationUrl 
+            : '/allcampaigns';
           const popup = res.popup;
 
           // Set sessionStorage for popup if it exists (same pattern as signup)
