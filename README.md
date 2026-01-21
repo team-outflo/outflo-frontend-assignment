@@ -1,76 +1,45 @@
-# Welcome to your Lovable project
+# OutFlo - Campaign Frontend Assignment
 
-## Project info
+Welcome to the OutFlo frontend assignment! This repository has been specifically prepared for your interview, focusing on our campaign-related features.
 
-**URL**: https://lovable.dev/projects/e1d351c3-46db-452f-be19-a4903d5b4634
+## Repository Overview
 
-## How can I edit this code? you cannot
+This version of the codebase has been intentionally minimized to focus ONLY on campaign-related features. Other product areas have been removed to keep the scope clear:
 
-There are several ways of editing your application.
+- **Available Features:** Login, Signup, All Campaigns List, Campaign Editor (View/Edit), and Campaign Analytics.
+- **Technologies:** Vite, TypeScript, React, shadcn/ui, Tailwind CSS.
 
-**Use Lovable**
+## Getting Started
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e1d351c3-46db-452f-be19-a4903d5b4634) and start prompting.
+Follow these steps to set up the project locally:
 
-Changes made via Lovable will be committed automatically to this repo.
+1. **Install Dependencies:**
+   ```sh
+   npm install
+   ```
 
-**Use your preferred IDE**
+2. **Start Development Server:**
+   ```sh
+   npm run dev
+   ```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+3. **Build for Production:**
+   ```sh
+   npm run build
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Guidelines for Candidates
 
-Follow these steps:
+- **Focus Area:** Your task will primarily involve working within the campaign-related pages (`src/pages/CampaignsList.tsx`, `src/pages/CampaignEditorPage.tsx`, etc.).
+- **Environment:** Use the existing authentication flow (Login/Signup) to access the application.
+- **Code Structure:** Do not change file paths for existing campaign-related files. However, feel free to create new folders or files as needed for your implementation.
+- **Constraints:** Please do not attempt to rebuild any of the removed product areas.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## What we look for
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Clean, maintainable, and well-typed TypeScript code.
+- Proper use of React hooks and state management patterns.
+- Attention to detail in UI/UX using Tailwind CSS and shadcn/ui.
+- clear commits and documentation of your thought process.
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/e1d351c3-46db-452f-be19-a4903d5b4634) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-deploy
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
-
-deploy
+Happy coding!
