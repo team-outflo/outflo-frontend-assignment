@@ -41,7 +41,7 @@ export const useNavigationHandler = () => {
         UNAUTHENTICATED_ROUTES.includes(locationPathname) ||
         locationPathname === ROOT_ROUTE
       ) {
-        navigate("/inbox");
+        navigate("/allcampaigns");
       }
     }
   }, [locationPathname, navigate, isAuthenticated, loading]);
