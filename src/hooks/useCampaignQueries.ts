@@ -264,14 +264,23 @@ export const mapBackendCampaignToFrontend = async (backendCampaign: any): Promis
     sequenceType: backendCampaign.sequenceType || "TREE",
     sequenceDraft: backendCampaign.sequenceDraft,
     sequence: {
-      steps: mapConfigsToSequenceSteps(backendCampaign.configs || backendCampaign.sequenceDraft || []),
+      steps: mapConfigsToSequenceSteps(
+        Array.isArray(backendCampaign.configs) 
+          ? backendCampaign.configs 
+          : (backendCampaign.sequenceDraft?.flat || [])
+      ),
       excludeConnected: (() => {
         // First check top-level excludeConnected
         if (backendCampaign.excludeConnected !== undefined) {
           return backendCampaign.excludeConnected;
         }
         // Then check all follow-up message configs (SEND_MESSAGE actions)
-        const configs = backendCampaign.configs || backendCampaign.sequenceDraft || [];
+        const configs = Array.isArray(backendCampaign.configs) 
+          ? backendCampaign.configs 
+          : (backendCampaign.sequenceDraft?.flat || []);
+          
+        if (!Array.isArray(configs)) return false;
+
         const followUpConfig = configs.find((config: any) => 
           config.action === "SEND_MESSAGE" && config.data?.excludeConnected !== undefined
         );
